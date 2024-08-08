@@ -5,11 +5,16 @@ require "bundler/setup"
 
 require "byebug"
 require "claude/client"
+require "readline"
 
 claude = Claude::Client.new(ENV["ANTHROPIC_API_KEY"])
 
 prompt = "Give concise expert answers. Answer calmly and directly. Ask questions if needed to clarify. Never repeat questions or introduce your answer."
-query = ARGF.read
+query = if !STDIN.tty? && !STDIN.closed?
+  STDIN.read
+else
+  Readline.readline("> ", true)
+end
 
 puts "query - #{query}"
 messages = claude.user_message(prompt + "\n" + query)
