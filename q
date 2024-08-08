@@ -9,7 +9,7 @@ require "readline"
 
 claude = Claude::Client.new(ENV["ANTHROPIC_API_KEY"])
 
-prompt = "Give concise expert answers. Answer calmly and directly. Ask questions if needed to clarify. Never repeat questions or introduce your answer."
+prompt = "Give concise expert answers. Answer calmly and directly. Only ask questions if unclear. Never repeat questions, introduce your answer."
 query = if !STDIN.tty? && !STDIN.closed?
   STDIN.read
 else
@@ -21,13 +21,19 @@ messages = claude.user_message(prompt + "\n" + query)
 response = claude.messages(messages)
 text = claude.parse_response(response)
 
-puts "messages"
-puts messages.inspect
-puts
+# puts "messages"
+# puts messages.inspect
+# puts
+#
+# puts "response"
+# puts response.inspect
+# puts
+#
+# puts "text"
 
-puts "response"
-puts response.inspect
-puts
+# cost $3 per million input tokens and $15 per million output tokens
+input_tokens = response["usage"]["input_tokens"]
+output_tokens = response["usage"]["output_tokens"]
 
-puts "text"
+puts
 puts text
