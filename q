@@ -35,5 +35,8 @@ text = claude.parse_response(response)
 input_tokens = response["usage"]["input_tokens"]
 output_tokens = response["usage"]["output_tokens"]
 
+# Calculate cost: $3 per million input tokens and $15 per million output tokens
+cost = (input_tokens * 3 + output_tokens * 15) / 1_000_000.0
+
 puts
-puts text
+puts "#{text} (Cost: $#{format('%.4f', cost)})"
