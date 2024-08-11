@@ -18,7 +18,7 @@ end
 
 puts "query - #{query}"
 messages = claude.user_message(prompt + "\n" + query)
-response = claude.messages(messages)
+response = claude.messages(messages, model: Claude::Model::CLAUDE_SONNET_LATEST)
 text = claude.parse_response(response)
 
 # cost $3 per million input tokens and $15 per million output tokens
