@@ -1,3 +1,8 @@
+PATH
+  remote: .
+  specs:
+    qq (0.1.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -17,16 +22,15 @@ GEM
     mini_mime (1.1.5)
     multi_xml (0.7.1)
       bigdecimal (~> 3.1)
-    parallel (1.25.1)
-    parser (3.3.4.1)
+    parallel (1.26.2)
+    parser (3.3.4.2)
       ast (~> 2.4.1)
       racc
-    quickdraw (0.1.0)
     racc (1.8.1)
     rainbow (3.1.1)
     rb-readline (0.5.5)
     regexp_parser (2.9.2)
-    rexml (3.3.4)
+    rexml (3.3.5)
       strscan
     rubocop (1.64.1)
       json (~> 2.3)
@@ -45,6 +49,18 @@ GEM
       rubocop (>= 1.48.1, < 2.0)
       rubocop-ast (>= 1.31.1, < 2.0)
     ruby-progressbar (1.13.0)
+    sequel (5.83.1)
+      bigdecimal
+    sqlite3 (2.0.3-aarch64-linux-gnu)
+    sqlite3 (2.0.3-aarch64-linux-musl)
+    sqlite3 (2.0.3-arm-linux-gnu)
+    sqlite3 (2.0.3-arm-linux-musl)
+    sqlite3 (2.0.3-arm64-darwin)
+    sqlite3 (2.0.3-x86-linux-gnu)
+    sqlite3 (2.0.3-x86-linux-musl)
+    sqlite3 (2.0.3-x86_64-darwin)
+    sqlite3 (2.0.3-x86_64-linux-gnu)
+    sqlite3 (2.0.3-x86_64-linux-musl)
     standard (1.39.2)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.0)
@@ -59,18 +75,30 @@ GEM
       rubocop-performance (~> 1.21.0)
     strscan (3.1.0)
     unicode-display_width (2.5.0)
+    xdg (8.5.0)
 
 PLATFORMS
-  ruby
-  x86_64-linux
+  aarch64-linux-gnu
+  aarch64-linux-musl
+  arm-linux-gnu
+  arm-linux-musl
+  arm64-darwin
+  x86-linux-gnu
+  x86-linux-musl
+  x86_64-darwin
+  x86_64-linux-gnu
+  x86_64-linux-musl
 
 DEPENDENCIES
   byebug
   claude-ruby
-  quickdraw
+  qq!
   rb-readline
+  sequel
+  sqlite3
   standard
   standard-performance
+  xdg
 
 BUNDLED WITH
    2.5.9

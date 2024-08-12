@@ -5,7 +5,8 @@
 Ask LLMs quick questions from the CLI with `qq`:
 
     $ qq how do I tell if I'm using an rbenv ruby or the system ruby
-    $ cat question | qq
+    $ cat question.txt | qq
+    $ echo "question" | qq
     
     # or just qq alone for a prompt with readline:
     $ qq
@@ -18,7 +19,7 @@ Future feature:
 Use `qc` to have a quick conversation, which picks up from the last `qq` if it
 happened in the last 15m.
 
-(This uses the logs in `~/.config/qq/logs`.)
+(This uses the logs in `~/.config/qq/log.sqlite`.)
 
 
 ## Development

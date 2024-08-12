@@ -1,11 +1,23 @@
 #!/usr/bin/env ruby
 
-ENV["BUNDLE_GEMFILE"] ||= File.expand_path("../Gemfile", __dir__)
+# Ruby 3.4 will move csv out of stdlib; httparty 0.22.0 depends on it without a version, bundler is
+# confused/mad there is a stdlib and gem version at the same time, warning:
+#     WARN: Unresolved or ambiguous specs during Gem::Specification.reset:
+#           csv (>= 0)
+#           Available/installed versions of this gem:
+#           - 3.3.0
+#           - 3.2.8
+#     WARN: Clearing out unresolved specs. Try 'gem cleanup <gem>'
+#     Please report a bug if this causes problems.
+# requiring csv here silences it and I refuse to keep digging
+require "csv"
+
 require "bundler/setup"
 
 require "readline"
 require "qq"
 
 input = ARGV.any? ? ARGV.join(' ') : ($stdin.tty? ? Readline.readline("> ", true) : $stdin.read)
+exit if input.nil? || input.strip.empty?
 response = QQ.query(input)
 puts response

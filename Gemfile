@@ -1,12 +1,16 @@
 source "https://rubygems.org"
 
-gem "claude-ruby"
+gemspec
 
-gem "byebug"
-gem "quickdraw"
-gem "rb-readline"
+group :development do
+  gem "byebug"
+  gem "rb-readline"
+  gem "standard"
+  gem "standard-performance"
+end
+
+# runtime dependencies
+gem "claude-ruby"
 gem "sequel"
 gem "sqlite3"
-gem "standard"
-gem "standard-performance"
 gem "xdg"
