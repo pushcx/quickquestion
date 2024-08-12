@@ -2,47 +2,24 @@ require "claude/client"
 require "sequel"
 require "fileutils"
 require "xdg"
+require "bigdecimal"
 
 module QQ
-  VERSION = "0.1.0" # Add this line to define the current version
+  VERSION = "0.1.0"
   DB_PATH = File.join(XDG::Config.new.home, "qq/log.sqlite3")
 
   def self.setup_db
     FileUtils.mkdir_p(File.dirname(DB_PATH))
     @db ||= Sequel.connect("sqlite://#{DB_PATH}")
 
-    @db.create_table? :queries do
-      primary_key :id
-      DateTime :at, null: false
-      String :query, null: false
-      String :response, null: false
-    end
+    Sequel.extension :migration
+    Sequel::TimestampMigrator.run(@db, File.join(File.dirname(__FILE__), "migration"))
 
-    @db.create_table? :version do
-      String :version, null: false
-    end
-
-    check_and_update_version
     @db
   end
 
   def self.db
     @db ||= setup_db
-  end
-
-  def self.check_and_update_version
-    version_count = @db[:version].count
-
-    if version_count == 0
-      @db[:version].insert(version: VERSION)
-    elsif version_count > 1
-      raise "Invalid 'version' table: multiple rows found"
-    else
-      db_version = @db[:version].first[:version]
-      if db_version != VERSION
-        warn "Warning: Database version (#{db_version}) does not match current version (#{VERSION})"
-      end
-    end
   end
 
   def self.query(input)
@@ -54,22 +31,28 @@ module QQ
     messages = claude.user_message(prompt + "\n" + input)
     response = claude.messages(messages, model: Claude::Model::CLAUDE_SONNET_LATEST)
     text = claude.parse_response(response)
-    cost = calculate_cost(response["usage"])
-    log_query(input, text)
-    "#{text} (Cost: $#{format("%.4f", cost)})"
+    usage = response["usage"]
+    input_tokens = usage["input_tokens"]
+    output_tokens = usage["output_tokens"]
+    cost = calculate_cost(usage)
+    log_query(input, text, input_tokens, output_tokens, cost)
+    "#{text} (Cost: $#{cost.truncate(4).to_s("F")})"
   end
 
   def self.calculate_cost(usage)
-    input_tokens = usage["input_tokens"]
-    output_tokens = usage["output_tokens"]
-    (input_tokens * 3 + output_tokens * 15) / 1_000_000.0
+    input_tokens = BigDecimal(usage["input_tokens"])
+    output_tokens = BigDecimal(usage["output_tokens"])
+    (input_tokens * 3 + output_tokens * 15) / BigDecimal("1_000_000")
   end
 
-  def self.log_query(query, response)
+  def self.log_query(query, response, input_tokens, output_tokens, cost)
     db[:queries].insert(
       at: Time.now.utc,
       query: query,
-      response: response
+      response: response,
+      input_tokens: input_tokens,
+      output_tokens: output_tokens,
+      cost: cost
     )
   end
 end
