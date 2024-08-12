@@ -23,7 +23,10 @@ module QQ
   end
 
   def self.query(input)
-    claude = Claude::Client.new(ENV["ANTHROPIC_API_KEY"])
+    api_key = ENV["ANTHROPIC_API_KEY"]
+    raise "ANTHROPIC_API_KEY environment variable is not set" if api_key.nil? || api_key.empty?
+
+    claude = Claude::Client.new(api_key)
     prompt = "Give concise expert answers. Answer calmly and directly. Only ask questions if unclear. Never repeat questions or introduce your answer. If giving code samples, do not explain unless explicitly asked."
     messages = claude.user_message(prompt + "\n" + input)
     response = claude.messages(messages, model: Claude::Model::CLAUDE_SONNET_LATEST)
