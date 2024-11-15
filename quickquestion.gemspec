@@ -22,4 +22,10 @@ Gem::Specification.new do |spec|
   spec.bindir = "bin"
   spec.executables = ["qq"]
   spec.require_paths = ["lib"]
+
+  # runtime dependencies
+  spec.add_dependency "claude-ruby", "~> 0.4.1"
+  spec.add_dependency "sequel", "~> 5"
+  spec.add_dependency "sqlite3", "~> 2.2"
+  spec.add_dependency "xdg", "~> 8.10"
 end

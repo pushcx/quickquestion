@@ -1,7 +1,11 @@
 PATH
   remote: .
   specs:
-    quickquestion (0.1.0)
+    quickquestion (0.1.1)
+      claude-ruby (~> 0.4.1)
+      sequel (~> 5)
+      sqlite3 (~> 2.2)
+      xdg (~> 8.10)
 
 GEM
   remote: https://rubygems.org/
@@ -87,14 +91,10 @@ PLATFORMS
 
 DEPENDENCIES
   byebug
-  claude-ruby
   quickquestion!
   rb-readline
-  sequel
-  sqlite3
   standard
   standard-performance
-  xdg
 
 BUNDLED WITH
    2.5.9

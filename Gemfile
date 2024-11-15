@@ -8,9 +8,3 @@ group :development do
   gem "standard"
   gem "standard-performance"
 end
-
-# runtime dependencies
-gem "claude-ruby"
-gem "sequel"
-gem "sqlite3"
-gem "xdg"
