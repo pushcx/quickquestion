@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.description = "A command-line tool to quickly ask questions to LLMs"
   spec.authors = ["Peter Bhat Harkins"]
   spec.email = ["peter@push.cx"]
-  spec.license = "TODO"
+  spec.license = "Nonstandard" # yeah I dunno
 
   spec.homepage = "https://push.cx/qq"
   spec.metadata["homepage_uri"] = spec.homepage
