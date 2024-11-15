@@ -52,3 +52,4 @@ Your questions and answers are logged to `~/.config/qq/log.sqlite`
     # to make the .gem
     gem build
 
+    gem push quickquestion-0.0.0.gem
