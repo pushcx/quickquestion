@@ -19,6 +19,9 @@ Then ask Claude a quick question from the CLI with `qq`:
     rbenv install $(rbenv install -l | grep -v - | tail -1) &&
     rbenv global $(rbenv install -l | grep -v - | tail -1) (Cost: $0.0008)
 
+It's most useful for these small, low-stakes practical puzzles where you can
+quickly judge the results.
+
 ## Expectations
 
 `qq` is a quick hack.
