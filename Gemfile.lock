@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    quickquestion (0.1.1)
+    quickquestion (0.2.0)
       claude-ruby (~> 0.4.1)
       sequel (~> 5)
       sqlite3 (~> 2.2)
