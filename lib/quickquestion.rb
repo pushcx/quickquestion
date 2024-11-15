@@ -4,7 +4,7 @@ require "fileutils"
 require "xdg"
 require "bigdecimal"
 
-module QQ
+module QuickQuestion
   VERSION = "0.1.0"
   DB_PATH = File.join(XDG::Config.new.home, "qq/log.sqlite3")
 

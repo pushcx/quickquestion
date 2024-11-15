@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    qq (0.1.0)
+    quickquestion (0.1.0)
 
 GEM
   remote: https://rubygems.org/
@@ -92,7 +92,7 @@ PLATFORMS
 DEPENDENCIES
   byebug
   claude-ruby
-  qq!
+  quickquestion!
   rb-readline
   sequel
   sqlite3

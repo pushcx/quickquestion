@@ -15,9 +15,9 @@ require "csv"
 require "bundler/setup"
 
 require "readline"
-require "qq"
+require "quickquestion"
 
 input = ARGV.any? ? ARGV.join(' ') : ($stdin.tty? ? Readline.readline("> ", true) : $stdin.read)
 exit if input.nil? || input.strip.empty?
-response = QQ.query(input)
+response = QuickQuestion.query(input)
 puts response
