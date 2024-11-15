@@ -5,7 +5,7 @@ require "xdg"
 require "bigdecimal"
 
 module QuickQuestion
-  VERSION = "0.1.0"
+  VERSION = "0.1.1"
   DB_PATH = File.join(XDG::Config.new.home, "qq/log.sqlite3")
 
   def self.setup_db
