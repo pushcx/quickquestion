@@ -1,12 +1,11 @@
 # Quick Question...
 
 Install with `gem install quickquestion`.
-
 Set `ANTHROPIC_API_KEY` env var to your [API key](https://console.anthropic.com/account/keys).
 
 Then ask Claude a quick question from the CLI with `qq`:
 
-    $ qq how do I tell if I'm using an rbenv ruby or the system ruby
+    $ qq how do I tell if Im using an rbenv ruby or the system ruby
     Run `which ruby` - if it shows a path containing `.rbenv` you're using rbenv.
     System Ruby typically shows `/usr/bin/ruby`. (Cost: $0.0007)
     $ cat question.txt | qq
