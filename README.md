@@ -18,11 +18,11 @@ Set `ANTHROPIC_API_KEY` env var to your [API key](https://console.anthropic.com/
 There are currently no options.
 
 Your questions and answers are logged to `~/.config/qq/log.sqlite`
-(or set [XDG_CCONFIG_HOME](https://specifications.freedesktop.org/basedir-spec/latest/#variables)).
+(or set [XDG_CONFIG_HOME](https://specifications.freedesktop.org/basedir-spec/latest/#variables)).
 
 ## Possible TODOs
 
- * Handle ctrl-c without traceback
+ * Handle ctrl-c without traceback.
  * Prompt customization.
  * Use `qc` to have a quick conversation (or `quick continue`), which picks up from the last `qq` if it happened in the last 15m.
    (This uses the logs in `~/.config/qq/log.sqlite`.)
